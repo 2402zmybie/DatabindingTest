@@ -22,14 +22,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //方法一需要
 //        setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        //方法一不需要
 //        textView = findViewById(R.id.textView)
+        //方法一不需要
 //        button = findViewById(R.id.button)
 
         myViewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
 
-        //TODO 方式二这里可以注销
+        // 方式一的控件全部在binding中进行管理  ActivityMainBinding是google自动生成的一个类
 //        myViewModel.number.observe(this,object :Observer<Int> {
 //            override fun onChanged(t: Int?) {
 //                binding.textView.text = myViewModel.number.value.toString()
@@ -39,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 //        binding.button.setOnClickListener {
 //            myViewModel.addNumber()
 //        }
-        //方式二  换成这个方式
+
+        //方式二  换成这个方式 在xml中进行数据的显示和绑定
         binding.data = myViewModel
         binding.lifecycleOwner = this
 
